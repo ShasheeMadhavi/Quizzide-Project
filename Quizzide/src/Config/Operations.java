@@ -5,8 +5,8 @@
  */
 package Config;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,11 +16,14 @@ import javax.swing.JOptionPane;
  * @author Shashee Madhavi
  */
 public class Operations {
-    public static boolean isLogin(String username, String password, String role, JFrame frame) {
+    public static boolean isLogin(String username, String password, JFrame frame) {
         try{
-            Connection myConn = MySQLConnection.geConnection();
+            Connection myConn = MySQLConnection.getConnection();
             String mySqlQuery = 
-                    "SELECT actual_name, username, role FROM tbl_users WHERE";
+                    "SELECT actual_name, username, role FROM tbl_users WHERE username='"
+                    + username + "'AND password='"
+                    + password + "'";
+            
             PreparedStatement preparedStatement = myConn.prepareStatement(mySqlQuery);
             ResultSet resultSet = preparedStatement.executeQuery();
             
@@ -31,6 +34,8 @@ public class Operations {
                 
                 return true;
             }
+            myConn.close();
+            
             
         }catch (Exception exception) {
             JOptionPane.showMessageDialog(frame, "Database Error!" + exception.getMessage());

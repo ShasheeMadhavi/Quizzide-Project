@@ -5,6 +5,9 @@
  */
 package UI;
 
+import Config.Operations;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -83,7 +86,7 @@ public class Login extends javax.swing.JFrame {
         txt_signIn.setText("Sign In");
 
         close_button.setForeground(new java.awt.Color(204, 204, 204));
-        close_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_delete_20px.png"))); // NOI18N
+        close_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete_20px.png"))); // NOI18N
         close_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 close_buttonMouseClicked(evt);
@@ -98,6 +101,9 @@ public class Login extends javax.swing.JFrame {
 
         p_signIn.setBackground(new java.awt.Color(0, 51, 102));
         p_signIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                p_signInMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 p_signInMouseEntered(evt);
             }
@@ -192,11 +198,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_close_buttonMouseClicked
 
     private void close_buttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close_buttonMouseEntered
-        close_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_delete_20px_1.png")));
+        close_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete_20px_1.png")));
     }//GEN-LAST:event_close_buttonMouseEntered
 
     private void close_buttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_close_buttonMouseExited
-        close_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_delete_20px.png")));
+        close_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete_20px.png")));
     }//GEN-LAST:event_close_buttonMouseExited
 
     private void p_signInMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_signInMouseEntered
@@ -207,6 +213,24 @@ public class Login extends javax.swing.JFrame {
     private void p_signInMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_signInMouseExited
         p_signIn.setBackground(new java.awt.Color(0, 51, 102));
     }//GEN-LAST:event_p_signInMouseExited
+
+    private void p_signInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_signInMouseClicked
+        Config.Operations operations = new Operations();
+        
+        try {
+            String usernameStr = username.getText();
+            String passwordStr = password.getText();
+            if (operations.isLogin(usernameStr, passwordStr, this)) {
+                new adminHome().setVisible(true);
+                this.dispose();
+                
+            }else {
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password!");
+            }
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, "Please type correct information!");
+        }
+    }//GEN-LAST:event_p_signInMouseClicked
 
     /**
      * @param args the command line arguments
