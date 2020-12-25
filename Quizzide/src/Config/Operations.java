@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -41,5 +43,49 @@ public class Operations {
             JOptionPane.showMessageDialog(frame, "Database Error!" + exception.getMessage());
         }
         return false;
+    }
+    
+    public static void viewCources(JTable cources_table, JFrame frame, String sqlQuery) {
+        try {
+            Connection myConn = MySQLConnection.getConnection();
+            PreparedStatement preparedStatement = myConn.prepareStatement(sqlQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            DefaultTableModel tableModel = (DefaultTableModel)cources_table.getModel();
+            tableModel.setRowCount(0);
+            while (resultSet.next()) {
+                Object coursesObject[] = {
+                    resultSet.getString("course_id"),
+                    resultSet.getString("course_name")
+                };
+                tableModel.addRow(coursesObject);
+            }
+            myConn.close();
+            
+        } catch(Exception exception) {
+            JOptionPane.showMessageDialog(frame, "Error: " + exception.getMessage());
+        }
+    }
+    
+    public static void saveCourse(String courseID, String courseName, JFrame frame) {
+        try {
+            Connection myConn = MySQLConnection.getConnection();
+            String sqlQuery = "INSERT INTO tbl_courses (course_id, course_name) VALUES (?, ?)";
+            
+            PreparedStatement preparedStatement = myConn.prepareStatement(sqlQuery);
+            preparedStatement.setString(1, courseID);
+            preparedStatement.setString(2, courseName);
+            
+            try {
+                preparedStatement.execute();
+                JOptionPane.showMessageDialog(frame, "Data has been saved!");
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(frame, "Data Error: " + exception.getMessage());
+            }
+            myConn.close();
+            
+        } catch(Exception exception) {
+            JOptionPane.showMessageDialog(frame, "Error: " + exception.getMessage());
+        }
     }
 }

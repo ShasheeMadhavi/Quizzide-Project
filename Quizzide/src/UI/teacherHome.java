@@ -5,29 +5,20 @@
  */
 package UI;
 
-import Config.Operations;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Shashee Madhavi
  */
-public class adminHome extends javax.swing.JFrame {
+public class teacherHome extends javax.swing.JFrame {
 
     /**
      * Creates new form adminHome
      */
-    public adminHome() {
+    public teacherHome() {
         initComponents();
         
         String headerText = "Welcome, " + Config.LoginSession.userRealName + "!";
         header_text.setText(headerText);
-        
-        
-        Operations operations = new Operations();
-        String sqlQuery = "SELECT * FROM tbl_courses";
-        operations.viewCources(cources_table, this, sqlQuery);
-        
     }
 
     /**
@@ -69,15 +60,6 @@ public class adminHome extends javax.swing.JFrame {
         p_quizzes = new javax.swing.JPanel();
         p_questions = new javax.swing.JPanel();
         p_courses = new javax.swing.JPanel();
-        coursesT_scrollPane = new javax.swing.JScrollPane();
-        cources_table = new javax.swing.JTable();
-        courcesMainTitle = new javax.swing.JLabel();
-        txt_CourseName = new javax.swing.JTextField();
-        txt_CourseID = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        btn_addCourse = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
         p_teachers = new javax.swing.JPanel();
         p_students = new javax.swing.JPanel();
         p_settings = new javax.swing.JPanel();
@@ -359,7 +341,7 @@ public class adminHome extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(footer)))
-                .addGap(5, 5, 5))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,7 +393,7 @@ public class adminHome extends javax.swing.JFrame {
                 .addComponent(header_text, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(sign_out)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,11 +413,11 @@ public class adminHome extends javax.swing.JFrame {
         p_quizzes.setLayout(p_quizzesLayout);
         p_quizzesLayout.setHorizontalGroup(
             p_quizzesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         p_quizzesLayout.setVerticalGroup(
             p_quizzesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
 
         p_questions.setBackground(new java.awt.Color(51, 51, 51));
@@ -448,111 +430,21 @@ public class adminHome extends javax.swing.JFrame {
         );
         p_questionsLayout.setVerticalGroup(
             p_questionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
 
         p_courses.setBackground(new java.awt.Color(51, 51, 51));
-        p_courses.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cources_table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Course ID", "Course Name"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        cources_table.setFocusable(false);
-        cources_table.setRequestFocusEnabled(false);
-        coursesT_scrollPane.setViewportView(cources_table);
-        if (cources_table.getColumnModel().getColumnCount() > 0) {
-            cources_table.getColumnModel().getColumn(0).setResizable(false);
-            cources_table.getColumnModel().getColumn(0).setPreferredWidth(50);
-            cources_table.getColumnModel().getColumn(1).setResizable(false);
-            cources_table.getColumnModel().getColumn(1).setPreferredWidth(200);
-        }
-
-        p_courses.add(coursesT_scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 56, 623, 329));
-
-        courcesMainTitle.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        courcesMainTitle.setForeground(new java.awt.Color(204, 204, 204));
-        courcesMainTitle.setText("-> Courses");
-        p_courses.add(courcesMainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
-
-        txt_CourseName.setBackground(new java.awt.Color(51, 51, 51));
-        txt_CourseName.setForeground(new java.awt.Color(153, 153, 153));
-        txt_CourseName.setText("Course Name");
-        txt_CourseName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txt_CourseNameMouseClicked(evt);
-            }
-        });
-        p_courses.add(txt_CourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 321, 30));
-
-        txt_CourseID.setBackground(new java.awt.Color(51, 51, 51));
-        txt_CourseID.setForeground(new java.awt.Color(153, 153, 153));
-        txt_CourseID.setText("Course ID");
-        txt_CourseID.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txt_CourseIDMouseClicked(evt);
-            }
-        });
-        p_courses.add(txt_CourseID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 103, 30));
-
-        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel13.setText("Course ID:");
-        p_courses.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 416, -1, 40));
-
-        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel14.setText("Course Name:");
-        p_courses.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 416, -1, 40));
-
-        btn_addCourse.setBackground(new java.awt.Color(0, 51, 102));
-        btn_addCourse.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_addCourseMouseClicked(evt);
-            }
-        });
-
-        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel15.setText("Add Course");
-
-        javax.swing.GroupLayout btn_addCourseLayout = new javax.swing.GroupLayout(btn_addCourse);
-        btn_addCourse.setLayout(btn_addCourseLayout);
-        btn_addCourseLayout.setHorizontalGroup(
-            btn_addCourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_addCourseLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel15)
-                .addContainerGap(14, Short.MAX_VALUE))
+        javax.swing.GroupLayout p_coursesLayout = new javax.swing.GroupLayout(p_courses);
+        p_courses.setLayout(p_coursesLayout);
+        p_coursesLayout.setHorizontalGroup(
+            p_coursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 840, Short.MAX_VALUE)
         );
-        btn_addCourseLayout.setVerticalGroup(
-            btn_addCourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_addCourseLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel15)
-                .addContainerGap(8, Short.MAX_VALUE))
+        p_coursesLayout.setVerticalGroup(
+            p_coursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
-
-        p_courses.add(btn_addCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 420, -1, -1));
 
         p_teachers.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -564,7 +456,7 @@ public class adminHome extends javax.swing.JFrame {
         );
         p_teachersLayout.setVerticalGroup(
             p_teachersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
 
         p_students.setBackground(new java.awt.Color(51, 51, 51));
@@ -577,7 +469,7 @@ public class adminHome extends javax.swing.JFrame {
         );
         p_studentsLayout.setVerticalGroup(
             p_studentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
 
         p_settings.setBackground(new java.awt.Color(51, 51, 51));
@@ -590,14 +482,14 @@ public class adminHome extends javax.swing.JFrame {
         );
         p_settingsLayout.setVerticalGroup(
             p_settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout main_containerLayout = new javax.swing.GroupLayout(main_container);
         main_container.setLayout(main_containerLayout);
         main_containerLayout.setHorizontalGroup(
             main_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_containerLayout.createSequentialGroup()
+            .addGroup(main_containerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(p_quizzes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -665,7 +557,9 @@ public class adminHome extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(main_container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(header, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -825,35 +719,6 @@ public class adminHome extends javax.swing.JFrame {
         Config.LogOut.logOut(this, login);
     }//GEN-LAST:event_sign_outMouseClicked
 
-    private void txt_CourseIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_CourseIDMouseClicked
-        txt_CourseID.setText("");
-    }//GEN-LAST:event_txt_CourseIDMouseClicked
-
-    private void txt_CourseNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_CourseNameMouseClicked
-        txt_CourseName.setText("");
-    }//GEN-LAST:event_txt_CourseNameMouseClicked
-
-    private void btn_addCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addCourseMouseClicked
-        try {
-            String courseID = txt_CourseID.getText();
-            String courseName = txt_CourseName.getText();
-            
-            try {
-                Operations operations = new Operations();
-                operations.saveCourse(courseID, courseName, this);
-                // Refresh Table
-                String sqlQuery = "SELECT * FROM tbl_courses";
-                operations.viewCources(cources_table, this, sqlQuery);
-                
-            } catch (Exception exception) {
-                JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage());
-            }
-            
-        } catch (Exception exception) {
-            JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage());
-        }
-    }//GEN-LAST:event_btn_addCourseMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -865,36 +730,33 @@ public class adminHome extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("FlatLaf Dark".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(adminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(teacherHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(adminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(teacherHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(adminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(teacherHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(adminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(teacherHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminHome().setVisible(true);
+                new teacherHome().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
-    private javax.swing.JPanel btn_addCourse;
-    private javax.swing.JLabel courcesMainTitle;
-    private javax.swing.JTable cources_table;
-    private javax.swing.JScrollPane coursesT_scrollPane;
     private javax.swing.JLabel footer;
     private javax.swing.JPanel header;
     private javax.swing.JLabel header_text;
@@ -902,9 +764,6 @@ public class adminHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -930,7 +789,5 @@ public class adminHome extends javax.swing.JFrame {
     private javax.swing.JPanel p_students;
     private javax.swing.JPanel p_teachers;
     private javax.swing.JLabel sign_out;
-    private javax.swing.JTextField txt_CourseID;
-    private javax.swing.JTextField txt_CourseName;
     // End of variables declaration//GEN-END:variables
 }
