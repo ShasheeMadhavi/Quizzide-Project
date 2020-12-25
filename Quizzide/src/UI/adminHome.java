@@ -26,7 +26,7 @@ public class adminHome extends javax.swing.JFrame {
         
         Operations operations = new Operations();
         String sqlQuery = "SELECT * FROM tbl_courses";
-        operations.viewCources(cources_table, this, sqlQuery);
+        operations.viewCourses(cources_table, this, sqlQuery);
         
     }
 
@@ -83,6 +83,7 @@ public class adminHome extends javax.swing.JFrame {
         p_settings = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -452,7 +453,6 @@ public class adminHome extends javax.swing.JFrame {
         );
 
         p_courses.setBackground(new java.awt.Color(51, 51, 51));
-        p_courses.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cources_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -490,12 +490,9 @@ public class adminHome extends javax.swing.JFrame {
             cources_table.getColumnModel().getColumn(1).setPreferredWidth(200);
         }
 
-        p_courses.add(coursesT_scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 56, 623, 329));
-
         courcesMainTitle.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         courcesMainTitle.setForeground(new java.awt.Color(204, 204, 204));
         courcesMainTitle.setText("-> Courses");
-        p_courses.add(courcesMainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         txt_CourseName.setBackground(new java.awt.Color(51, 51, 51));
         txt_CourseName.setForeground(new java.awt.Color(153, 153, 153));
@@ -505,7 +502,6 @@ public class adminHome extends javax.swing.JFrame {
                 txt_CourseNameMouseClicked(evt);
             }
         });
-        p_courses.add(txt_CourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 321, 30));
 
         txt_CourseID.setBackground(new java.awt.Color(51, 51, 51));
         txt_CourseID.setForeground(new java.awt.Color(153, 153, 153));
@@ -515,15 +511,12 @@ public class adminHome extends javax.swing.JFrame {
                 txt_CourseIDMouseClicked(evt);
             }
         });
-        p_courses.add(txt_CourseID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 103, 30));
 
         jLabel13.setForeground(new java.awt.Color(204, 204, 204));
         jLabel13.setText("Course ID:");
-        p_courses.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 416, -1, 40));
 
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("Course Name:");
-        p_courses.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 416, -1, 40));
 
         btn_addCourse.setBackground(new java.awt.Color(0, 51, 102));
         btn_addCourse.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -552,7 +545,50 @@ public class adminHome extends javax.swing.JFrame {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        p_courses.add(btn_addCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 420, -1, -1));
+        javax.swing.GroupLayout p_coursesLayout = new javax.swing.GroupLayout(p_courses);
+        p_courses.setLayout(p_coursesLayout);
+        p_coursesLayout.setHorizontalGroup(
+            p_coursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_coursesLayout.createSequentialGroup()
+                .addGroup(p_coursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(p_coursesLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(courcesMainTitle))
+                    .addGroup(p_coursesLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(coursesT_scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(p_coursesLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel13)
+                        .addGap(17, 17, 17)
+                        .addComponent(txt_CourseID, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel14)
+                        .addGap(7, 7, 7)
+                        .addComponent(txt_CourseName, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(btn_addCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+        p_coursesLayout.setVerticalGroup(
+            p_coursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_coursesLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(courcesMainTitle)
+                .addGap(18, 18, 18)
+                .addComponent(coursesT_scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(p_coursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(p_coursesLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(p_coursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_CourseID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_CourseName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_addCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
         p_teachers.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -598,19 +634,19 @@ public class adminHome extends javax.swing.JFrame {
         main_containerLayout.setHorizontalGroup(
             main_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_containerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(p_quizzes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(p_quizzes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(main_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(main_containerLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(p_questions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(p_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(main_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(main_containerLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(p_courses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(p_courses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(main_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(main_containerLayout.createSequentialGroup()
                     .addContainerGap()
@@ -636,13 +672,13 @@ public class adminHome extends javax.swing.JFrame {
             .addGroup(main_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(main_containerLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(p_questions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(p_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(main_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(main_containerLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(p_courses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(p_courses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(main_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(main_containerLayout.createSequentialGroup()
                     .addContainerGap()
@@ -664,7 +700,7 @@ public class adminHome extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main_container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(main_container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(header, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -690,16 +726,7 @@ public class adminHome extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(background);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -843,7 +870,7 @@ public class adminHome extends javax.swing.JFrame {
                 operations.saveCourse(courseID, courseName, this);
                 // Refresh Table
                 String sqlQuery = "SELECT * FROM tbl_courses";
-                operations.viewCources(cources_table, this, sqlQuery);
+                operations.viewCourses(cources_table, this, sqlQuery);
                 
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage());

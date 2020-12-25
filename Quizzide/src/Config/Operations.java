@@ -45,7 +45,7 @@ public class Operations {
         return false;
     }
     
-    public static void viewCources(JTable cources_table, JFrame frame, String sqlQuery) {
+    public static void viewCourses(JTable cources_table, JFrame frame, String sqlQuery) {
         try {
             Connection myConn = MySQLConnection.getConnection();
             PreparedStatement preparedStatement = myConn.prepareStatement(sqlQuery);
