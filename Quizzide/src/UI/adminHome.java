@@ -27,6 +27,9 @@ public class adminHome extends javax.swing.JFrame {
         Operations operations = new Operations();
         String sqlQuery = "SELECT * FROM tbl_courses";
         operations.viewCourses(cources_table, this, sqlQuery);
+        operations.course2Combo(cmb_courses, this);
+        String sqlQuizQuery = "SELECT * FROM tbl_quiz";
+        operations.viewQuiz(quizTable, this, sqlQuizQuery);
         
     }
 
@@ -67,6 +70,14 @@ public class adminHome extends javax.swing.JFrame {
         sign_out = new javax.swing.JLabel();
         main_container = new javax.swing.JPanel();
         p_quizzes = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        cmb_courses = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        quizTable = new javax.swing.JTable();
+        txt_quizTitle = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        btn_addQuiz = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
         p_questions = new javax.swing.JPanel();
         p_courses = new javax.swing.JPanel();
         coursesT_scrollPane = new javax.swing.JScrollPane();
@@ -428,15 +439,120 @@ public class adminHome extends javax.swing.JFrame {
 
         p_quizzes.setBackground(new java.awt.Color(51, 51, 51));
 
+        jLabel16.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel16.setText("-> Quizzes");
+
+        quizTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Quiz ID", "Quiz Title", "Course ID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(quizTable);
+        if (quizTable.getColumnModel().getColumnCount() > 0) {
+            quizTable.getColumnModel().getColumn(0).setResizable(false);
+            quizTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+            quizTable.getColumnModel().getColumn(1).setResizable(false);
+            quizTable.getColumnModel().getColumn(1).setPreferredWidth(300);
+            quizTable.getColumnModel().getColumn(2).setResizable(false);
+            quizTable.getColumnModel().getColumn(2).setPreferredWidth(60);
+        }
+
+        txt_quizTitle.setBackground(new java.awt.Color(51, 51, 51));
+        txt_quizTitle.setForeground(new java.awt.Color(153, 153, 153));
+        txt_quizTitle.setText("Quiz Title");
+
+        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel17.setText("Course: ");
+
+        btn_addQuiz.setBackground(new java.awt.Color(0, 51, 102));
+        btn_addQuiz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_addQuizMouseClicked(evt);
+            }
+        });
+
+        jLabel18.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel18.setText("Create Quiz");
+
+        javax.swing.GroupLayout btn_addQuizLayout = new javax.swing.GroupLayout(btn_addQuiz);
+        btn_addQuiz.setLayout(btn_addQuizLayout);
+        btn_addQuizLayout.setHorizontalGroup(
+            btn_addQuizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_addQuizLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jLabel18)
+                .addGap(22, 22, 22))
+        );
+        btn_addQuizLayout.setVerticalGroup(
+            btn_addQuizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_addQuizLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout p_quizzesLayout = new javax.swing.GroupLayout(p_quizzes);
         p_quizzes.setLayout(p_quizzesLayout);
         p_quizzesLayout.setHorizontalGroup(
             p_quizzesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
+            .addGroup(p_quizzesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(p_quizzesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(p_quizzesLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_quizzesLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(txt_quizTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(cmb_courses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btn_addQuiz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97))))
+            .addGroup(p_quizzesLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         p_quizzesLayout.setVerticalGroup(
             p_quizzesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGroup(p_quizzesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGroup(p_quizzesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_quizzesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmb_courses, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_quizTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel17))
+                    .addComponent(btn_addQuiz, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
 
         p_questions.setBackground(new java.awt.Color(51, 51, 51));
@@ -881,6 +997,27 @@ public class adminHome extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_addCourseMouseClicked
 
+    private void btn_addQuizMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addQuizMouseClicked
+        try {
+            String quizTitle = txt_quizTitle.getText();
+            String courseID = String.valueOf(cmb_courses.getSelectedItem());
+            
+            try {
+                Operations operations = new Operations();
+                operations.saveQuiz(quizTitle, courseID, this);
+                // Refresh Table
+                String sqlQuery = "SELECT * FROM tbl_quiz";
+                operations.viewQuiz(quizTable, this, sqlQuery);
+                
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage());
+            }
+            
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage());
+        }
+    }//GEN-LAST:event_btn_addQuizMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -919,6 +1056,8 @@ public class adminHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JPanel btn_addCourse;
+    private javax.swing.JPanel btn_addQuiz;
+    private javax.swing.JComboBox<String> cmb_courses;
     private javax.swing.JLabel courcesMainTitle;
     private javax.swing.JTable cources_table;
     private javax.swing.JScrollPane coursesT_scrollPane;
@@ -932,6 +1071,9 @@ public class adminHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -942,6 +1084,7 @@ public class adminHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel main_container;
     private javax.swing.JPanel menu1;
@@ -956,8 +1099,10 @@ public class adminHome extends javax.swing.JFrame {
     private javax.swing.JPanel p_settings;
     private javax.swing.JPanel p_students;
     private javax.swing.JPanel p_teachers;
+    private javax.swing.JTable quizTable;
     private javax.swing.JLabel sign_out;
     private javax.swing.JTextField txt_CourseID;
     private javax.swing.JTextField txt_CourseName;
+    private javax.swing.JTextField txt_quizTitle;
     // End of variables declaration//GEN-END:variables
 }
